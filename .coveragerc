@@ -6,8 +6,8 @@ omit =
     aws_sdk_polars/tests/*
     aws_sdk_polars/vendor/*
     aws_sdk_polars/_version.py
-    aws_sdk_polars/cli.py
     aws_sdk_polars/paths.py
+    aws_sdk_polars/boto_ses.py
 
 [report]
 # Regexes for lines to exclude from consideration

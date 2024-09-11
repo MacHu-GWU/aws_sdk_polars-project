@@ -6,6 +6,11 @@ API Reference
     :local:
 
 
+Boto3
+------------------------------------------------------------------------------
+- :func:`aws_sdk_polars.boto_ses.get_storage_options`
+
+
 S3
 ------------------------------------------------------------------------------
 - :func:`aws_sdk_polars.s3.partition`

@@ -5,6 +5,7 @@ from aws_sdk_polars import api
 
 def test():
     _ = api
+    _ = api.get_storage_options
     _ = api.s3.partition
     _ = api.s3.partition.encode_hive_partition
     _ = api.s3.partition.decode_hive_partition

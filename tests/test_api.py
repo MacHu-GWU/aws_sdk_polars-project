@@ -12,6 +12,7 @@ def test():
     _ = api.s3.partition.S3Partition
     _ = api.s3.partition.list_partitions
     _ = api.s3.partition_df_for_s3
+    _ = api.s3.write
 
 
 if __name__ == "__main__":

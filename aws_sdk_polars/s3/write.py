@@ -154,7 +154,7 @@ def partition_df_for_s3(
         yield (sub_df, s3dir)
 
 
-def write_to_s3(
+def write(
     df: pl.DataFrame,
     s3_client: "S3Client",
     polars_writer: Writer,

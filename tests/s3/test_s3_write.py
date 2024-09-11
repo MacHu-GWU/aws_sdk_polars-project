@@ -17,7 +17,7 @@ from aws_sdk_polars.s3.write import (
     configure_s3_write_options,
     configure_s3path,
     partition_df_for_s3,
-    write_to_s3,
+    write,
 )
 from aws_sdk_polars.tests.mock_aws import BaseMockAwsTest
 
@@ -145,14 +145,14 @@ def test_partition_df_for_s3():
     assert sum([df.shape[0] for df, _ in results]) == n_row
 
 
-class TestS3Partition(BaseMockAwsTest):
+class Test(BaseMockAwsTest):
     use_mock: bool = True
 
-    def test_write_to_s3(self):
+    def test_write(self):
         # case 1
         df = pl.DataFrame({"id": [1, 2, 3], "name": ["alice", "bob", "cathy"]})
         s3path = S3Path(f"s3://{self.bucket}/1.csv")
-        s3path_new = write_to_s3(
+        s3path_new = write(
             df=df,
             s3_client=self.s3_client,
             polars_writer=Writer(
@@ -179,7 +179,7 @@ class TestS3Partition(BaseMockAwsTest):
         # case 2
         s3dir = S3Path(f"s3://{self.bucket}/")
         fname = "1"
-        s3path_new = write_to_s3(
+        s3path_new = write(
             df=df,
             s3_client=self.s3_client,
             polars_writer=Writer(

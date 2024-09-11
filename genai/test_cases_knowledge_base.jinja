@@ -1,0 +1,42 @@
+# ==============================================================================
+# Consolidated Unit Test Case Code for {{ project_name }}
+#
+# **Purpose**
+#
+# This document serves as a comprehensive knowledge base for the unit test
+# part of the {{ project_name }} project,
+# enabling GenAI tools to reference the entire codebase efficiently.
+#
+# **Rationale**
+#
+# Due to limitations in processing multiple files, this document concatenates
+# all unit test code files into a single, easily accessible format.
+#
+# **Contents**
+#
+# - Complete unit test code from all project files
+# - File paths and names preserved as comments before each file's content
+#
+# Note:
+#
+# This consolidated view is generated automatically and should be updated
+# whenever significant changes are made to the project's source code.
+# ==============================================================================
+
+# ==============================================================================
+# Below is the unit test code folder structure:
+#
+{%- for pymodule in pymodule_list %}
+#     {{ pymodule.relpath }}
+{%- endfor %}
+#
+# ==============================================================================
+{%- for pymodule in pymodule_list %}
+# ------------------------------------------------------------------------------
+# Start of {{ pymodule.relpath }} content
+# ------------------------------------------------------------------------------
+{{ pymodule.content }}
+# ------------------------------------------------------------------------------
+# End of {{ pymodule.relpath }} content
+# ------------------------------------------------------------------------------
+{%- endfor %}

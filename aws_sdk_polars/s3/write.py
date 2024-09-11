@@ -189,14 +189,13 @@ def write(
         for example, if the full file name is "data.csv", then fname is "data".
     :param s3path: A pre-configured S3Path object. If provided, other arguments are ignored.
 
-    :return: A tuple of three values:
-        - The S3Path object representing the full file path in S3.
-        - The number of bytes written to S3, i.e., the size of the parquet file.
-        - The ETag of the S3 object.
+    :return: the S3Path object representing the created file on S3. You could
+        access its attribute like 'size', 'etag', 'last_modified_at'
     """
     # --- preprocess input arguments
     if s3pathlib_write_bytes_kwargs is None:
         s3pathlib_write_bytes_kwargs = {}
+
     ext = configure_s3_write_options(
         df=df,
         polars_writer=polars_writer,

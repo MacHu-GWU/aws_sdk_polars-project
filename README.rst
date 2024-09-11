@@ -55,6 +55,8 @@ Welcome to ``aws_sdk_polars`` Documentation
 
 ``aws_sdk_polars`` is an open-source Python initiative that harnesses the lightning-fast capabilities of the Polars library within the AWS ecosystem.
 
+This library is highly inspired by aws_sdk_pandas, but replaces pandas with the lightning-fast Polars library, offering significant performance improvements for large-scale data processing tasks.
+
 
 .. _install:
 

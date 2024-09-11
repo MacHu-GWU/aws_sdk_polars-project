@@ -14,4 +14,4 @@ S3
 - :func:`aws_sdk_polars.s3.partition.build_hive_partition_dir`
 - :class:`aws_sdk_polars.s3.partition.S3Partition`
 - :func:`aws_sdk_polars.s3.partition.list_partitions`
-- :func:`aws_sdk_polars.s3.partition_df_for_s3`
+- :func:`aws_sdk_polars.s3.write.partition_df_for_s3`

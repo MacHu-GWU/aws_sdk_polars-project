@@ -10,12 +10,11 @@ import io
 import polars as pl
 from s3pathlib import S3Path
 from polars_writer.writer import Writer, ParquetCompressionEnum
-from compress.api import Algorithm, compress
+from compress.api import Algorithm, compress as do_compress
 
 from ..constants import (
     S3_METADATA_KEY_N_RECORD,
     S3_METADATA_KEY_N_COLUMN,
-    CompressionEnum,
 )
 from ..typehint import T_OPTIONAL_KWARGS
 
@@ -26,20 +25,20 @@ if T.TYPE_CHECKING:  # pragma: no cover
 
 
 _content_encoding_mapping = {
-    Algorithm.gzip: "gzip",
-    Algorithm.bz2: "bz2",
-    Algorithm.snappy: "snappy",
-    Algorithm.lz4: "lz4",
-    Algorithm.lzma: "lzo",
-    Algorithm.zstd: "zstd",
+    Algorithm.gzip.value: "gzip",
+    Algorithm.bz2.value: "bz2",
+    Algorithm.snappy.value: "snappy",
+    Algorithm.lz4.value: "lz4",
+    Algorithm.lzma.value: "lzo",
+    Algorithm.zstd.value: "zstd",
 }
 _file_ext_mapping = {
-    Algorithm.gzip: ".gzip",
-    Algorithm.bz2: ".bz2",
-    Algorithm.snappy: ".snappy",
-    Algorithm.lz4: ".lz4",
-    Algorithm.lzma: ".lzo",
-    Algorithm.zstd: ".zst",
+    Algorithm.gzip.value: ".gzip",
+    Algorithm.bz2.value: ".bz2",
+    Algorithm.snappy.value: ".snappy",
+    Algorithm.lz4.value: ".lz4",
+    Algorithm.lzma.value: ".lzo",
+    Algorithm.zstd.value: ".zst",
 }
 
 
@@ -72,10 +71,11 @@ def configure_s3_write_options(
         s3pathlib_write_bytes_kwargs["metadata"].update(more_metadata)
     else:
         s3pathlib_write_bytes_kwargs["metadata"] = more_metadata
-    content_encoding = _content_encoding_mapping.get(compress.value)
+    compress_str: str = Algorithm.ensure_str(compress)
+    content_encoding = _content_encoding_mapping.get(compress_str)
     if content_encoding is not None:
         s3pathlib_write_bytes_kwargs["content_encoding"] = content_encoding
-    compress_ext = _file_ext_mapping.get(compress.value, "")
+    compress_ext = _file_ext_mapping.get(compress_str, "")
 
     if polars_writer.is_csv():
         s3pathlib_write_bytes_kwargs["content_type"] = "text/plain"
@@ -158,7 +158,7 @@ def write(
     df: pl.DataFrame,
     s3_client: "S3Client",
     polars_writer: Writer,
-    compression: Algorithm = Algorithm.uncompressed,
+    compression: T.Union[str, Algorithm] = Algorithm.uncompressed,
     compression_kwargs: T_OPTIONAL_KWARGS = None,
     s3pathlib_write_bytes_kwargs: T_OPTIONAL_KWARGS = None,
     s3dir: T.Optional[S3Path] = None,
@@ -212,7 +212,7 @@ def write(
         buffer = io.BytesIO()
         polars_writer.write(df, file_args=[buffer])
         b = buffer.getvalue()
-        b = compress(algo=compression, data=b, kwargs=compression_kwargs)
+        b = do_compress(algo=compression, data=b, kwargs=compression_kwargs)
         s3path = configure_s3path(
             s3dir=s3dir,
             fname=fname,

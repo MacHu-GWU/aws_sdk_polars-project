@@ -158,6 +158,7 @@ class Test(BaseMockAwsTest):
             polars_writer=Writer(
                 format="csv",
             ),
+            compression="uncompressed",
             s3path=s3path,
         )
         assert isinstance(s3path_new.size, int)

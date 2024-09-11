@@ -13,6 +13,14 @@ def test():
     _ = api.s3.partition.list_partitions
     _ = api.s3.partition_df_for_s3
     _ = api.s3.write
+    _ = api.s3.read_csv
+    _ = api.s3.read_json
+    _ = api.s3.read_ndjson
+    _ = api.s3.read_parquet
+    _ = api.s3.read_many_csv
+    _ = api.s3.read_many_json
+    _ = api.s3.read_many_ndjson
+    _ = api.s3.read_many_parquet
 
 
 if __name__ == "__main__":

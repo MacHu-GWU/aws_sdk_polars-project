@@ -1,0 +1,11 @@
+# A MANIFEST.in file can be added in a project to define the list of files
+# to include in the distribution built by the sdist command.
+#
+# For more info: https://docs.python.org/2/distutils/sourcedist.html#manifest-related-options
+
+recursive-include aws_sdk_polars
+include *.txt
+include *.rst
+exclude *.pyc
+exclude *.pyo
+exclude aws_sdk_polars/tests/**

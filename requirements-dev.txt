@@ -1,0 +1,6 @@
+# This requirements file should only include dependencies for development
+pathlib_mate                            # autopep8 your code
+twine                                   # make distribution archive
+wheel                                   # make pre-compiled distribution package
+build                                   # build distribution package
+boto3_stubs[s3,athena,glue,dynamodb,opensearch,redshift]

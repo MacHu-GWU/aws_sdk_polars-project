@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import typing as T
 import polars as pl
 from tabulate import tabulate
 
@@ -20,18 +21,6 @@ def pprint_df(df: pl.DataFrame):  # pragma: no cover
     Pretty print a polars DataFrame.
     """
     print(df_to_ascii(df))
-
-
-
-# -*- coding: utf-8 -*-
-
-"""
-Utilities for merging multiple small Parquet files into larger ones to optimize
-query performance.
-"""
-
-import typing as T
-import polars as pl
 
 
 def get_merged_schema(

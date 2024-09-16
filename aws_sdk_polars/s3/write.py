@@ -150,8 +150,8 @@ def partition_df_for_s3(
         sub_df = sub_df.drop(part_keys)
         kvs = dict(zip(part_keys, part_values))
         partition_relpath = encode_hive_partition(kvs=kvs)
-        s3dir = s3dir.joinpath(partition_relpath).to_dir()
-        yield (sub_df, s3dir)
+        s3dir_partition = s3dir.joinpath(partition_relpath).to_dir()
+        yield (sub_df, s3dir_partition)
 
 
 def write(

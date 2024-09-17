@@ -46,7 +46,7 @@ def test_configure_s3_write_options():
         compress=Algorithm.gzip,
         s3pathlib_write_bytes_kwargs=s3_kwargs,
     )
-    assert ext == ".csv.gzip"
+    assert ext == ".csv.gz"
     assert s3_kwargs["content_type"] == "text/plain"
     assert s3_kwargs["content_encoding"] == "gzip"
 
@@ -68,7 +68,7 @@ def test_configure_s3_write_options():
         compress=Algorithm.gzip,
         s3pathlib_write_bytes_kwargs=s3_kwargs,
     )
-    assert ext == ".json.gzip"
+    assert ext == ".json.gz"
     assert s3_kwargs["content_type"] == "application/json"
     assert s3_kwargs["content_encoding"] == "gzip"
 

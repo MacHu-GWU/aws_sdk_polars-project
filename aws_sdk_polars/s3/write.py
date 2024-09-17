@@ -33,7 +33,7 @@ _content_encoding_mapping = {
     Algorithm.zstd.value: "zstd",
 }
 _file_ext_mapping = {
-    Algorithm.gzip.value: ".gzip",
+    Algorithm.gzip.value: ".gz",
     Algorithm.bz2.value: ".bz2",
     Algorithm.snappy.value: ".snappy",
     Algorithm.lz4.value: ".lz4",
